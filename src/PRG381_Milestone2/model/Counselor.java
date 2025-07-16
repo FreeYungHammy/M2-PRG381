@@ -15,9 +15,9 @@ public class Counselor {
     
     private String name;
     private String specialization;
-    private boolean available;
+    private String available;
     
-    public Counselor(String name, String specialization, boolean available)
+    public Counselor(String name, String specialization, String available)
     {
         this.name = name;
         this.specialization = specialization;
@@ -38,10 +38,10 @@ public class Counselor {
         this.specialization = newSpec;
     }
     
-    public boolean getAvailable() {
+    public String getAvailable() {
         return available;
     }
-    public void setAvailable(boolean newAvailable) {
+    public void setAvailable(String newAvailable) {
         this.available = newAvailable;
     }
 }

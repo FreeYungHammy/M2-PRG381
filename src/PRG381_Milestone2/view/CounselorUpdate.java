@@ -43,7 +43,7 @@ public class CounselorUpdate extends javax.swing.JFrame {
 
         jLabel11.setText("Available");
 
-        counsAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        counsAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
         counsAvail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 counsAvailActionPerformed(evt);

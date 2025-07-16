@@ -6,8 +6,9 @@ package PRG381_Milestone2.controller;
 
 import PRG381_Milestone2.model.Appointment;
 import java.sql.*;
-import java.time.LocalTime;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ public class AppointmentController {
     private final Connection con;
     
     public AppointmentController(){
-        con = DBConnection.getConnection();
+        this.con = DBConnection.getConnection();
         createTableIfNotExists();
         insertDummyData();
     }
@@ -44,15 +45,15 @@ public class AppointmentController {
     }
     
     private void insertDummyData(){
-        String sql = "SELECT * FROM Appointment";
+        String sql = "SELECT COUNT(*) FROM Appointment";
         
         try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             if (rs.next() && rs.getInt(1) == 0) {
                 System.out.println("Inserting dummy data...");
 
-                insertAppointment(new Appointment("Dr. Smith", new Date(), LocalTime.of(9, 0)));
-                insertAppointment(new Appointment("Dr. Adams", new Date(), LocalTime.of(11, 30)));
-                insertAppointment(new Appointment("Dr. Ndlovu", new Date(), LocalTime.of(14, 15)));
+                insertAppointment(new Appointment("Dr. Smith", new Date(), "10:53"));
+                insertAppointment(new Appointment("Dr. Adams", new Date(), "14:23"));
+                insertAppointment(new Appointment("Dr. Ndlovu", new Date(), "13:43"));
 
                 System.out.println("Dummy data inserted.");
             } else {
@@ -64,7 +65,7 @@ public class AppointmentController {
     }
     
     //use form input as method input
-    public void bookAppointment(String counselor, Date date, LocalTime time)
+    public void bookAppointment(String counselor, Date date, String time)
     {
         
         //validation
@@ -75,7 +76,7 @@ public class AppointmentController {
         insertAppointment(newApp);
     }
     
-    public Appointment updateApp(Appointment appChanged, String counselor, Date date, LocalTime time)
+    public Appointment updateApp(Appointment appChanged, String counselor, Date date, String time)
     {
         //validation and error checks
         appChanged.setCounName(counselor);
@@ -90,7 +91,7 @@ public class AppointmentController {
         try(PreparedStatement stmt = con.prepareStatement(sql)){
             stmt.setString(1, app.getCounName());
             stmt.setDate(2, new java.sql.Date(app.getDate().getTime()));
-            stmt.setString(3, app.getTime().toString());
+            stmt.setString(3, app.getTime());
             
             stmt.executeUpdate();
             System.out.print("Appointment Inserted into database.");
@@ -98,4 +99,24 @@ public class AppointmentController {
             System.out.println("Error inserting into database");
         }
     }
+    
+    public List<Appointment> getAllAppointments() {
+        List<Appointment> list = new ArrayList<>();
+        String sql = "SELECT * FROM Appointment";
+    
+        try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                String counselor = rs.getString("counselor");
+                Date date = rs.getDate("date");
+                String time = rs.getString("time"); 
+
+                list.add(new Appointment(counselor, date, time));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving appointments: " + e.getMessage());
+        }
+
+        return list;
+    }
+
 }

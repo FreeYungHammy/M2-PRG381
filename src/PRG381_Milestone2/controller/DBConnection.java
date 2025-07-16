@@ -14,23 +14,22 @@ import java.sql.SQLException;
 public class DBConnection {
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     private static final String JDBC_URL = "jdbc:derby:M2PRG381;create=true";
-    
+
     private static Connection con;
-    
-    public static void DBConnection(){
-        try{
-            Class.forName(DRIVER);
-            con = DriverManager.getConnection(JDBC_URL);
-            System.out.println("Connection to Derby DB successful.");
-            
-        }catch(ClassNotFoundException ex){
-            System.out.println("JDBC Driver not found: " + ex.getMessage());
-        }catch (SQLException ex){
-            System.out.println("Failed to connect to DB: " + ex.getMessage());
+
+    public static Connection getConnection() {
+        if (con == null) {
+            try {
+                Class.forName(DRIVER);
+                con = DriverManager.getConnection(JDBC_URL);
+                System.out.println("Connection to Derby DB successful.");
+            } catch (ClassNotFoundException ex) {
+                System.out.println("JDBC Driver not found: " + ex.getMessage());
+            } catch (SQLException ex) {
+                System.out.println("Failed to connect to DB: " + ex.getMessage());
+            }
         }
-    }
-    
-    public static Connection getConnection(){
         return con;
     }
 }
+

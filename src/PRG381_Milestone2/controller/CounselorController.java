@@ -18,7 +18,7 @@ public class CounselorController {
     private final Connection con;
 
     public CounselorController() {
-        con = DBConnection.getConnection();
+        this.con = DBConnection.getConnection();
         createTable();
         insertDummyData();
     }
@@ -28,7 +28,7 @@ public class CounselorController {
                      "id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY, " +
                      "name VARCHAR(100), " +
                      "specialization VARCHAR(100), " +
-                     "available BOOLEAN)";
+                     "available VARCHAR(100))";
         try (Statement stmt = con.createStatement()) {
             stmt.executeUpdate(sql);
             System.out.println("Counselor table created.");
@@ -46,9 +46,9 @@ public class CounselorController {
         try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             rs.next();
             if (rs.getInt(1) == 0) {
-                insertCounselor(new Counselor("Dr. Mbatha", "Family Therapy", true));
-                insertCounselor(new Counselor("Dr. Singh", "Career Counseling", false));
-                insertCounselor(new Counselor("Dr. Dlamini", "Mental Health", true));
+                insertCounselor(new Counselor("Dr. Mbatha", "Family Therapy", "yes"));
+                insertCounselor(new Counselor("Dr. Singh", "Career Counseling", "yes"));
+                insertCounselor(new Counselor("Dr. Dlamini", "Mental Health", "no"));
                 System.out.println("Dummy counselor data inserted.");
             }
         } catch (SQLException e) {
@@ -56,7 +56,7 @@ public class CounselorController {
         }
     }
     
-    public void addCoun(String name, String specialization, boolean available)
+    public void addCoun(String name, String specialization, String available)
     {
         //validation 
         //creating counselor object
@@ -66,7 +66,7 @@ public class CounselorController {
         //adding to array update database at the end
     }
     
-    public Counselor updateCoun(Counselor updatedCount, String name, String specialization, boolean available)
+    public Counselor updateCoun(Counselor updatedCount, String name, String specialization, String available)
     {
         updatedCount.setName(name);
         updatedCount.setSpec(specialization);
@@ -80,7 +80,7 @@ public class CounselorController {
         try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, c.getName());
             stmt.setString(2, c.getSpec());
-            stmt.setBoolean(3, c.getAvailable());
+            stmt.setString(3, c.getAvailable());
             stmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println("Error inserting counselor: " + e.getMessage());
@@ -94,7 +94,7 @@ public class CounselorController {
             while (rs.next()) {
                 String name = rs.getString("name");
                 String spec = rs.getString("specialization");
-                boolean avail = rs.getBoolean("available");
+                String avail = rs.getString("available");
                 list.add(new Counselor(name, spec, avail));
             }
         } catch (SQLException e) {

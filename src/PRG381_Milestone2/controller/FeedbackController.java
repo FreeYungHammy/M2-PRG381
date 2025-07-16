@@ -17,7 +17,7 @@ public class FeedbackController {
     private final Connection con;
     
     public FeedbackController() {
-        con = DBConnection.getConnection();
+        this.con = DBConnection.getConnection();
         createTable();
         insertDummyData();
     }
@@ -84,7 +84,6 @@ public class FeedbackController {
             stmt.setInt(2, fb.getRating());
             stmt.setString(3, fb.getComments());
             stmt.executeUpdate();
-            System.out.println("Feedback inserted.");
         } catch (SQLException e) {
             System.out.println("Error inserting feedback: " + e.getMessage());
         }

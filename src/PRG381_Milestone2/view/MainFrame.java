@@ -5,7 +5,16 @@
 package PRG381_Milestone2.view;
 
 
+import PRG381_Milestone2.controller.AppointmentController;
+import PRG381_Milestone2.controller.CounselorController;
+import PRG381_Milestone2.controller.FeedbackController;
+import java.awt.Color;
 import java.util.*;
+import javax.swing.table.DefaultTableModel;
+import PRG381_Milestone2.model.Feedback;
+import PRG381_Milestone2.model.Counselor;
+import PRG381_Milestone2.model.Appointment;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -14,14 +23,16 @@ import java.util.*;
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    private List<String> timeList = new ArrayList<>();
-    private List<String> counselorsList = new ArrayList<>();
-
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
+        loadCounselorNames();
+        loadTimeSlots();
+        loadAppointmentTable();
+        loadCounselorTable();
+        loadFeedbackTable();  
     }
 
     /**
@@ -45,6 +56,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         appointTime = new javax.swing.JComboBox<>();
+        createAppoint = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         updateAppoint = new javax.swing.JButton();
         deleteAppoint = new javax.swing.JButton();
@@ -59,6 +71,7 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         counsAvail = new javax.swing.JComboBox<>();
+        createCouns = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         updateCouns = new javax.swing.JButton();
         DeleteCouns = new javax.swing.JButton();
@@ -73,7 +86,12 @@ public class MainFrame extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         feedbackComment = new javax.swing.JTextArea();
-        jSlider1 = new javax.swing.JSlider();
+        createFeedback = new javax.swing.JButton();
+        oneStar = new javax.swing.JToggleButton();
+        twoStar = new javax.swing.JToggleButton();
+        threeStar = new javax.swing.JToggleButton();
+        fourStar = new javax.swing.JToggleButton();
+        fiveStar = new javax.swing.JToggleButton();
         jLabel4 = new javax.swing.JLabel();
         updateFeed = new javax.swing.JButton();
         deleteComm = new javax.swing.JButton();
@@ -108,19 +126,31 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel15.setText("Appointment Time");
 
+        createAppoint.setText("Book Appointment");
+        createAppoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createAppointActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel13)
-                    .addComponent(appointCounsName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(appointDate, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                    .addComponent(appointTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel13)
+                            .addComponent(appointCounsName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(appointDate, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                            .addComponent(appointTime, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(createAppoint)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -138,7 +168,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(appointTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(createAppoint)
+                .addGap(15, 15, 15))
         );
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -234,10 +266,17 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel11.setText("Available");
 
-        counsAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        counsAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
         counsAvail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 counsAvailActionPerformed(evt);
+            }
+        });
+
+        createCouns.setText("Add Counselor");
+        createCouns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createCounsActionPerformed(evt);
             }
         });
 
@@ -246,14 +285,19 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel9)
-                    .addComponent(counsName)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel10)
-                    .addComponent(counsSpec)
-                    .addComponent(counsAvail, 0, 215, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9)
+                            .addComponent(counsName)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(counsSpec)
+                            .addComponent(counsAvail, 0, 215, Short.MAX_VALUE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(createCouns)))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -271,7 +315,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(counsAvail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71))
+                .addGap(32, 32, 32)
+                .addComponent(createCouns)
+                .addGap(16, 16, 16))
         );
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -364,23 +410,76 @@ public class MainFrame extends javax.swing.JFrame {
         feedbackComment.setRows(5);
         jScrollPane4.setViewportView(feedbackComment);
 
-        jSlider1.setMaximum(5);
-        jSlider1.setMinimum(1);
-        jSlider1.setMinorTickSpacing(1);
+        createFeedback.setText("Send feedback");
+        createFeedback.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createFeedbackActionPerformed(evt);
+            }
+        });
+
+        oneStar.setText("jToggleButton1");
+        oneStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oneStarActionPerformed(evt);
+            }
+        });
+
+        twoStar.setText("jToggleButton1");
+        twoStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                twoStarActionPerformed(evt);
+            }
+        });
+
+        threeStar.setText("jToggleButton1");
+        threeStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                threeStarActionPerformed(evt);
+            }
+        });
+
+        fourStar.setText("jToggleButton1");
+        fourStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fourStarActionPerformed(evt);
+            }
+        });
+
+        fiveStar.setText("jToggleButton1");
+        fiveStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fiveStarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(feedbackName))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(createFeedback))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(oneStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(twoStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(threeStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fourStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fiveStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(feedbackName)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -393,12 +492,19 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(oneStar)
+                    .addComponent(twoStar)
+                    .addComponent(threeStar)
+                    .addComponent(fourStar)
+                    .addComponent(fiveStar))
+                .addGap(24, 24, 24)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(createFeedback)
+                .addGap(9, 9, 9))
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
@@ -430,18 +536,20 @@ public class MainFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(339, 339, 339))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(updateFeed, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(293, 293, 293)
-                .addComponent(deleteComm, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101))
+                .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(updateFeed, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(293, 293, 293)
+                        .addComponent(deleteComm, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(101, 101, 101))
+                    .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
         );
         jDesktopPane3Layout.setVerticalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,6 +614,194 @@ public class MainFrame extends javax.swing.JFrame {
         feedUpdateForm.setLocationRelativeTo(null);
     }//GEN-LAST:event_updateFeedActionPerformed
 
+    private void createAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAppointActionPerformed
+        AppointmentController AC = new AppointmentController();
+
+        // get values
+        String appCounselorName = (String) appointCounsName.getSelectedItem();
+        Date appointmentDate = appointDate.getDate(); // from JDateChooser
+        String appointmentTime = (String) appointTime.getSelectedItem();
+
+        // validation
+        if (appCounselorName == null || appCounselorName.isEmpty()
+                || appointmentDate == null
+                || appointmentTime == null || appointmentTime.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields before booking.");
+            return;
+        }
+
+        // insert new appointment
+        AC.bookAppointment(appCounselorName, appointmentDate, appointmentTime);
+
+        // show confirmation
+        JOptionPane.showMessageDialog(this, "Appointment booked successfully!");
+
+        // refresh table to show new data
+        loadAppointmentTable(); //
+
+        // resetting fields
+        appointCounsName.setSelectedIndex(0);
+        appointTime.setSelectedIndex(0);
+        appointDate.setDate(null);
+    }//GEN-LAST:event_createAppointActionPerformed
+
+    private void createCounsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCounsActionPerformed
+        // TODO add your handling code here:
+        
+        CounselorController CC = new CounselorController();
+        
+        //needs validation to check if fields are empty
+        String councelorName = counsName.getText();
+        String counsSpecilization = counsSpec.getText();
+        String counsAvailability = counsAvail.getSelectedItem().toString();
+        
+
+        //using the method that creates an councelor object and inserts into database
+        CC.addCoun(councelorName, counsSpecilization, counsAvailability);
+        
+    }//GEN-LAST:event_createCounsActionPerformed
+
+    private void createFeedbackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createFeedbackActionPerformed
+        // TODO add your handling code here:
+        
+        FeedbackController FC = new FeedbackController();
+        
+        String studentName = feedbackComment.getText();
+        
+        int rating = 1;
+        if (oneStar.isSelected()) rating = 1;
+        else if (twoStar.isSelected()) rating = 2;
+        else if (threeStar.isSelected()) rating = 3;
+        else if (fourStar.isSelected()) rating = 4;
+        else if (fiveStar.isSelected()) rating = 5;
+        //add validation incase someone hasnt togggled a button
+        //else {}
+        
+        String comment = feedbackComment.getText();
+        
+        FC.feedSubmit(comment, rating, comment);
+                
+    }//GEN-LAST:event_createFeedbackActionPerformed
+    
+    private void loadAppointmentTable(){
+        AppointmentController controller = new AppointmentController();
+        List<Appointment> appointmentList = controller.getAllAppointments();
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Counselor Name", "Date", "Time"}, 0);
+        for (Appointment ap : appointmentList) {
+            model.addRow(new Object[]{
+                ap.getCounName(),
+                ap.getDate(),
+                ap.getTime()
+            });
+        }
+
+        appointmentsTbl.setModel(model);
+    }
+    private void loadTimeSlots(){
+         String[] timeSlots = {
+            "08:00", "08:30",
+            "09:00", "09:30",
+            "10:00", "10:30",
+            "11:00", "11:30",
+            "12:00", "12:30",
+            "13:00", "13:30",
+            "14:00", "14:30",
+            "15:00", "15:30",
+            "16:00"
+        };
+
+        appointTime.removeAllItems();
+            for (String time : timeSlots) {
+            appointTime.addItem(time);
+        }
+    }
+    private void loadCounselorNames(){
+        CounselorController controller = new CounselorController();
+    List<Counselor> counselorList = controller.getAllCounselors();
+
+        appointCounsName.removeAllItems();
+        for (Counselor c : counselorList) {
+            appointCounsName.addItem(c.getName()); 
+        }
+    }
+    
+    private void loadCounselorTable(){
+        CounselorController controller = new CounselorController();
+        List<Counselor> counselorList = controller.getAllCounselors();
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Counselor Name", "Specialization", "Is Avaliable"}, 0);
+        for (Counselor cl : counselorList) {
+            model.addRow(new Object[]{
+                cl.getName(),
+                cl.getSpec(),
+                cl.getAvailable()
+            });
+        }
+
+        CounselorTbl.setModel(model);
+    }
+    
+    private void loadFeedbackTable(){
+        FeedbackController controller = new FeedbackController();
+        List<Feedback> feedbackList = controller.getAllFeedback();
+
+        DefaultTableModel model = new DefaultTableModel(new String[]{"Student Name", "Rating", "Comments"}, 0);
+        for (Feedback fb : feedbackList) {
+            model.addRow(new Object[]{
+                fb.getName(),
+                fb.getRating(),
+                fb.getComments()
+            });
+        }
+
+        feedbackTbl.setModel(model);
+    }
+    
+    private void oneStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneStarActionPerformed
+        // TODO add your handling code here:
+        oneStar.setBackground(Color.yellow);
+        twoStar.setBackground(Color.white);
+        threeStar.setBackground(Color.white);
+        fourStar.setBackground(Color.white);
+        fiveStar.setBackground(Color.white);
+    }//GEN-LAST:event_oneStarActionPerformed
+
+    private void twoStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twoStarActionPerformed
+        // TODO add your handling code here:
+        oneStar.setBackground(Color.yellow);
+        twoStar.setBackground(Color.yellow);
+        threeStar.setBackground(Color.white);
+        fourStar.setBackground(Color.white);
+        fiveStar.setBackground(Color.white);
+    }//GEN-LAST:event_twoStarActionPerformed
+
+    private void threeStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeStarActionPerformed
+        // TODO add your handling code here:
+        oneStar.setBackground(Color.yellow);
+        twoStar.setBackground(Color.yellow);
+        threeStar.setBackground(Color.yellow);
+        fourStar.setBackground(Color.white);
+        fiveStar.setBackground(Color.white);
+    }//GEN-LAST:event_threeStarActionPerformed
+
+    private void fourStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fourStarActionPerformed
+        // TODO add your handling code here:
+        oneStar.setBackground(Color.yellow);
+        twoStar.setBackground(Color.yellow);
+        threeStar.setBackground(Color.yellow);
+        fourStar.setBackground(Color.yellow);
+        fiveStar.setBackground(Color.white);
+    }//GEN-LAST:event_fourStarActionPerformed
+
+    private void fiveStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveStarActionPerformed
+        // TODO add your handling code here:
+        oneStar.setBackground(Color.yellow);
+        twoStar.setBackground(Color.yellow);
+        threeStar.setBackground(Color.yellow);
+        fourStar.setBackground(Color.yellow);
+        fiveStar.setBackground(Color.yellow);
+
+    }//GEN-LAST:event_fiveStarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -551,11 +847,16 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> counsAvail;
     private javax.swing.JTextField counsName;
     private javax.swing.JTextField counsSpec;
+    private javax.swing.JButton createAppoint;
+    private javax.swing.JButton createCouns;
+    private javax.swing.JButton createFeedback;
     private javax.swing.JButton deleteAppoint;
     private javax.swing.JButton deleteComm;
     private javax.swing.JTextArea feedbackComment;
     private javax.swing.JTextField feedbackName;
     private javax.swing.JTable feedbackTbl;
+    private javax.swing.JToggleButton fiveStar;
+    private javax.swing.JToggleButton fourStar;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JDesktopPane jDesktopPane2;
     private javax.swing.JDesktopPane jDesktopPane3;
@@ -581,8 +882,10 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSlider jSlider1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JToggleButton oneStar;
+    private javax.swing.JToggleButton threeStar;
+    private javax.swing.JToggleButton twoStar;
     private javax.swing.JButton updateAppoint;
     private javax.swing.JButton updateCouns;
     private javax.swing.JButton updateFeed;
