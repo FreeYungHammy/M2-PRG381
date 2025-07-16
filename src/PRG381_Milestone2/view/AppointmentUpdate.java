@@ -95,6 +95,8 @@ public class AppointmentUpdate extends javax.swing.JFrame {
 
     private void appFormUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appFormUpdateActionPerformed
         // TODO add your handling code here:
+        
+        
         this.dispose();
     }//GEN-LAST:event_appFormUpdateActionPerformed
 

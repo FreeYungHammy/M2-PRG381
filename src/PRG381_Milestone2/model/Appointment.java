@@ -14,10 +14,10 @@ import java.util.Date;
 public class Appointment {
     private String counselorName;
     private Date appDate;
-    private LocalTime appTime;
+    private String appTime;
     //appStatus should only be allowed to be changed via drop 
     
-    public Appointment(String counselorName, Date appDate, LocalTime appTime)
+    public Appointment(String counselorName, Date appDate, String appTime)
     {
         this.counselorName = counselorName;
         this.appDate = appDate;
@@ -31,10 +31,10 @@ public class Appointment {
         this.appDate = newDate;
     }
 
-    public LocalTime getTime() {
+    public String getTime() {
         return appTime;
     }
-    public void setTime(LocalTime newTime) {
+    public void setTime(String newTime) {
         this.appTime = newTime;
     }
     

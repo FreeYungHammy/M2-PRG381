@@ -11,7 +11,7 @@ import PRG381_Milestone2.model.Counselor;
  * @author calvi
  */
 public class CounselorController {
-    public void addCoun(String name, String specialization, boolean available)
+    public void addCoun(String name, String specialization, String available)
     {
         //validation 
         //creating counselor object
@@ -21,7 +21,7 @@ public class CounselorController {
         //adding to array update database at the end
     }
     
-    public Counselor updateCoun(Counselor updatedCount, String name, String specialization, boolean available)
+    public Counselor updateCoun(Counselor updatedCount, String name, String specialization, String available)
     {
         updatedCount.setName(name);
         updatedCount.setSpec(specialization);

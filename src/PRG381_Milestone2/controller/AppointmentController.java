@@ -42,7 +42,7 @@ public class AppointmentController {
     }
     
     //use form input as method input
-    public void bookAppointment(String counselor, Date date, LocalTime time)
+    public void bookAppointment(String counselor, Date date, String time)
     {
         
         //validation
@@ -53,7 +53,7 @@ public class AppointmentController {
         insertAppointment(newApp);
     }
     
-    public Appointment updateApp(Appointment appChanged, String counselor, Date date, LocalTime time)
+    public Appointment updateApp(Appointment appChanged, String counselor, Date date, String time)
     {
         //validation and error checks
         appChanged.setCounName(counselor);
@@ -68,7 +68,7 @@ public class AppointmentController {
         try(PreparedStatement stmt = con.prepareStatement(sql)){
             stmt.setString(1, app.getCounName());
             stmt.setDate(2, new java.sql.Date(app.getDate().getTime()));
-            stmt.setString(3, app.getTime().toString());
+            stmt.setString(3, app.getTime());
             
             stmt.executeUpdate();
             System.out.print("Appointment Inserted into database.");
