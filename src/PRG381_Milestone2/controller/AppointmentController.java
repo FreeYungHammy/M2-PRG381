@@ -18,7 +18,7 @@ public class AppointmentController {
     private final Connection con;
     
     public AppointmentController(){
-        con = new DBConnection.getConnection();
+        con = DBConnection.getConnection();
         createTableIfNotExists();
     }
     
@@ -68,7 +68,7 @@ public class AppointmentController {
         String sql = "INSERT INTO Appointment (counselor, date, time, status) VALUES (?, ?, ?, ?)";
         try(PreparedStatement stmt = con.prepareStatement(sql)){
             stmt.setString(1, app.getCounName());
-            stmt.setDate(2, new java.sql.Date(app.getDate).getTime());
+            stmt.setDate(2, new java.sql.Date(app.getDate().getTime()));
             stmt.setString(3, app.getTime().toString());
             stmt.setString(4, app.getStatus());
             

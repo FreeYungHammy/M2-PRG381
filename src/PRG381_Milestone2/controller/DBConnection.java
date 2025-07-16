@@ -15,9 +15,9 @@ public class DBConnection {
     private static final String DRIVER = "org.apache.derby.jdbc.EmbeddedDriver";
     private static final String JDBC_URL = "jdbc:derby:M2PRG381;create=true";
     
-    Connection con;
+    private static Connection con;
     
-    public DBConnection(){
+    public static void DBConnection(){
         try{
             Class.forName(DRIVER);
             con = DriverManager.getConnection(JDBC_URL);
@@ -30,7 +30,7 @@ public class DBConnection {
         }
     }
     
-    public Connection getConnection(){
+    public static Connection getConnection(){
         return con;
     }
 }
