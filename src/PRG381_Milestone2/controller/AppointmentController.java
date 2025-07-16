@@ -20,6 +20,7 @@ public class AppointmentController {
     public AppointmentController(){
         con = DBConnection.getConnection();
         createTableIfNotExists();
+        insertDummyData();
     }
     
     private void createTableIfNotExists(){
@@ -27,7 +28,8 @@ public class AppointmentController {
                 "id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY , " +
                 "counselor VARCHAR(100), " +
                 "date DATE, " + 
-                "time VARCHAR(20), ";
+                "time VARCHAR(20)" +
+                ")";
         
         try(Statement stmt = con.createStatement()){
             stmt.executeUpdate(sql);
@@ -38,6 +40,26 @@ public class AppointmentController {
             } else {
               System.out.println("Error creating table: " + e.getMessage());
             }
+        }
+    }
+    
+    private void insertDummyData(){
+        String sql = "SELECT * FROM Appointment";
+        
+        try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
+            if (rs.next() && rs.getInt(1) == 0) {
+                System.out.println("Inserting dummy data...");
+
+                insertAppointment(new Appointment("Dr. Smith", new Date(), LocalTime.of(9, 0)));
+                insertAppointment(new Appointment("Dr. Adams", new Date(), LocalTime.of(11, 30)));
+                insertAppointment(new Appointment("Dr. Ndlovu", new Date(), LocalTime.of(14, 15)));
+
+                System.out.println("Dummy data inserted.");
+            } else {
+                System.out.println("Dummy data already present.");
+            }
+        } catch (SQLException e) {
+        System.out.println("Error checking or inserting dummy data: " + e.getMessage());
         }
     }
     
