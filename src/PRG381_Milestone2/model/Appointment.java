@@ -15,15 +15,13 @@ public class Appointment {
     private String counselorName;
     private Date appDate;
     private LocalTime appTime;
-    private String appStatus;
     //appStatus should only be allowed to be changed via drop 
     
-    public Appointment(String counselorName, Date appDate, LocalTime appTime, String appStatus)
+    public Appointment(String counselorName, Date appDate, LocalTime appTime)
     {
         this.counselorName = counselorName;
         this.appDate = appDate;
         this.appTime = appTime;
-        this.appStatus = appStatus;
     }
     
     public Date getDate() {
@@ -47,11 +45,5 @@ public class Appointment {
         this.counselorName = newConName;
     }
     
-    public String getStatus() {
-        return appStatus;
-    }
-    public void setStatus(String updateStatus) {
-        this.appStatus = updateStatus;
-    }
     
 }

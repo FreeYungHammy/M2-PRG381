@@ -27,8 +27,7 @@ public class AppointmentController {
                 "id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY , " +
                 "counselor VARCHAR(100), " +
                 "date DATE, " + 
-                "time VARCHAR(20), "+ 
-                "status VARCHAR(50))";
+                "time VARCHAR(20), ";
         
         try(Statement stmt = con.createStatement()){
             stmt.executeUpdate(sql);
@@ -48,7 +47,7 @@ public class AppointmentController {
         
         //validation
         //-->then create appointment object
-        Appointment newApp = new Appointment(counselor, date, time, "upcoming");
+        Appointment newApp = new Appointment(counselor, date, time);
 
         //update list adn then maybe update database or only update database at end of operation
         insertAppointment(newApp);
@@ -65,12 +64,11 @@ public class AppointmentController {
     }
     
     public void insertAppointment(Appointment app){
-        String sql = "INSERT INTO Appointment (counselor, date, time, status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Appointment (counselor, date, time) VALUES (?, ?, ?)";
         try(PreparedStatement stmt = con.prepareStatement(sql)){
             stmt.setString(1, app.getCounName());
             stmt.setDate(2, new java.sql.Date(app.getDate().getTime()));
             stmt.setString(3, app.getTime().toString());
-            stmt.setString(4, app.getStatus());
             
             stmt.executeUpdate();
             System.out.print("Appointment Inserted into database.");
