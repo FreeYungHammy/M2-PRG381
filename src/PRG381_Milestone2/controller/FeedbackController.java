@@ -25,7 +25,6 @@ public class FeedbackController {
     {
         
         //validation
-        
         //changing objects values
         changedFeed.setName(name);
         changedFeed.setRating(rating);
