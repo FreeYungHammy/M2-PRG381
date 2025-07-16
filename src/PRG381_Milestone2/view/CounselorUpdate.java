@@ -26,21 +26,90 @@ public class CounselorUpdate extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel9 = new javax.swing.JLabel();
+        counsName = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        counsSpec = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        counsAvail = new javax.swing.JComboBox<>();
+        counFormUpdate = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocation(new java.awt.Point(400, 190));
+
+        jLabel9.setText("Name");
+
+        jLabel10.setText("Specialization");
+
+        jLabel11.setText("Available");
+
+        counsAvail.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "True", "False" }));
+        counsAvail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                counsAvailActionPerformed(evt);
+            }
+        });
+
+        counFormUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        counFormUpdate.setText("Update");
+        counFormUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                counFormUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel9)
+                            .addComponent(counsName)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel10)
+                            .addComponent(counsSpec)
+                            .addComponent(counsAvail, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(counFormUpdate)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(counsName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(counsSpec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(counsAvail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addComponent(counFormUpdate)
+                .addGap(36, 36, 36))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void counsAvailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counsAvailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_counsAvailActionPerformed
+
+    private void counFormUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counFormUpdateActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+
+    }//GEN-LAST:event_counFormUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +147,12 @@ public class CounselorUpdate extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton counFormUpdate;
+    private javax.swing.JComboBox<String> counsAvail;
+    private javax.swing.JTextField counsName;
+    private javax.swing.JTextField counsSpec;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
