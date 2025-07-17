@@ -4,6 +4,8 @@
  */
 package PRG381_Milestone2.view;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author 601052
@@ -15,6 +17,7 @@ public class FeedbackUpdate extends javax.swing.JFrame {
      */
     public FeedbackUpdate() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

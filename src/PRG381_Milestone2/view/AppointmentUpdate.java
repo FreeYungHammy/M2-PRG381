@@ -4,6 +4,11 @@
  */
 package PRG381_Milestone2.view;
 
+import PRG381_Milestone2.controller.CounselorController;
+import PRG381_Milestone2.model.Counselor;
+import java.util.List;
+import javax.swing.*;
+
 /**
  *
  * @author 601052
@@ -15,6 +20,8 @@ public class AppointmentUpdate extends javax.swing.JFrame {
      */
     public AppointmentUpdate() {
         initComponents();
+        loadCounselorNames();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -36,6 +43,7 @@ public class AppointmentUpdate extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 190));
+        setResizable(false);
 
         jLabel13.setText("Counselor Name");
 
@@ -97,9 +105,19 @@ public class AppointmentUpdate extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         
-        this.dispose();
+        
+        
     }//GEN-LAST:event_appFormUpdateActionPerformed
-
+    
+    private void loadCounselorNames(){
+        CounselorController controller = new CounselorController();
+        List<Counselor> counselorList = controller.getAllCounselors();
+        
+        appointCounsName.removeAllItems();
+        for (Counselor c : counselorList) {
+            appointCounsName.addItem(c.getName()); 
+        }
+    }
     /**
      * @param args the command line arguments
      */

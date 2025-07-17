@@ -4,6 +4,9 @@
  */
 package PRG381_Milestone2.view;
 
+import java.util.Date;
+import javax.swing.JFrame;
+
 /**
  *
  * @author 601052
@@ -15,6 +18,7 @@ public class CounselorUpdate extends javax.swing.JFrame {
      */
     public CounselorUpdate() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -101,6 +105,22 @@ public class CounselorUpdate extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public class UpdateAppointmentFrame extends javax.swing.JFrame{
+        
+        private String originalName;
+        
+        public UpdateAppointmentFrame(String counselorName, String spec, String isAvailable){
+            initComponents();
+            
+            this.originalName = counselorName;
+            
+            counsName.setText(counselorName);
+            counsSpec.setText(spec);
+            counsAvail.setSelectedItem(isAvailable);
+        }
+    }
+    
+    
     private void counsAvailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counsAvailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_counsAvailActionPerformed

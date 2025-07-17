@@ -15,6 +15,7 @@ import PRG381_Milestone2.model.Feedback;
 import PRG381_Milestone2.model.Counselor;
 import PRG381_Milestone2.model.Appointment;
 import javax.swing.JOptionPane;
+import java.text.*;
 
 
 /**
@@ -418,35 +419,40 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        oneStar.setText("jToggleButton1");
+        oneStar.setText("★");
+        oneStar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         oneStar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 oneStarActionPerformed(evt);
             }
         });
 
-        twoStar.setText("jToggleButton1");
+        twoStar.setText("★");
+        twoStar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         twoStar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 twoStarActionPerformed(evt);
             }
         });
 
-        threeStar.setText("jToggleButton1");
+        threeStar.setText("★");
+        threeStar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         threeStar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 threeStarActionPerformed(evt);
             }
         });
 
-        fourStar.setText("jToggleButton1");
+        fourStar.setText("★");
+        fourStar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fourStar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fourStarActionPerformed(evt);
             }
         });
 
-        fiveStar.setText("jToggleButton1");
+        fiveStar.setText("★");
+        fiveStar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         fiveStar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fiveStarActionPerformed(evt);
@@ -555,7 +561,7 @@ public class MainFrame extends javax.swing.JFrame {
         jDesktopPane3Layout.setVerticalGroup(
             jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane3Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap(37, Short.MAX_VALUE)
                 .addGroup(jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -598,6 +604,7 @@ public class MainFrame extends javax.swing.JFrame {
         AppointmentUpdate appUpdateForm = new AppointmentUpdate();  // create an instance of the new form
         appUpdateForm.setVisible(true);               // show it
         appUpdateForm.setLocationRelativeTo(null); 
+        getSelectedAppointment();
     }//GEN-LAST:event_updateAppointActionPerformed
 
     private void updateCounsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCounsActionPerformed
@@ -716,6 +723,30 @@ public class MainFrame extends javax.swing.JFrame {
             appointTime.addItem(time);
         }
     }
+    
+    public Appointment getSelectedAppointment(){
+        int selectedRow = appointmentsTbl.getSelectedRow();
+        if(selectedRow == -1){
+            // case for no row selected 
+            JOptionPane.showMessageDialog(this, "Please select an appointment.");
+            return null;
+        }
+        
+        String counselorName = appointmentsTbl.getValueAt(selectedRow, 0).toString();
+        String dateString = appointmentsTbl.getValueAt(selectedRow, 1).toString();
+        String time = appointmentsTbl.getValueAt(selectedRow, 2).toString();
+        
+        Date date = null;
+        try{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            date = sdf.parse(dateString);
+        } catch (ParseException e){
+            JOptionPane.showMessageDialog(this, "Error passing date: " + e.getMessage());
+            return null;
+        }
+        return new Appointment(counselorName, date, time);
+    }
+    
     private void loadCounselorNames(){
         CounselorController controller = new CounselorController();
     List<Counselor> counselorList = controller.getAllCounselors();
