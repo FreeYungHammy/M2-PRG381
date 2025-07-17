@@ -739,7 +739,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         loadFeedbackTable();
         
-        feedbackComment.setText("");
+        feedbackName.setText("");
         unrate();
         feedbackComment.setText("");
     }//GEN-LAST:event_createFeedbackActionPerformed
@@ -813,7 +813,7 @@ public class MainFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error passing date: " + e.getMessage());
             return null;
         }
-        return new Appointment(counselorName, date, time);
+        return new Appointment(0, counselorName, date, time);
     }
     
     private void loadCounselorNames(){
