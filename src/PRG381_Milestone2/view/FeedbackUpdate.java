@@ -4,7 +4,12 @@
  */
 package PRG381_Milestone2.view;
 
+import PRG381_Milestone2.controller.FeedbackController;
+import PRG381_Milestone2.model.Feedback;
+import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import PRG381_Milestone2.view.MainFrame;
 
 /**
  *
@@ -32,11 +37,15 @@ public class FeedbackUpdate extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         feedbackName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jSlider1 = new javax.swing.JSlider();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         feedbackComment = new javax.swing.JTextArea();
         feedFormUpdate = new javax.swing.JButton();
+        oneStar = new javax.swing.JToggleButton();
+        twoStar = new javax.swing.JToggleButton();
+        threeStar = new javax.swing.JToggleButton();
+        fourStar = new javax.swing.JToggleButton();
+        fiveStar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(400, 190));
@@ -44,10 +53,6 @@ public class FeedbackUpdate extends javax.swing.JFrame {
         jLabel5.setText("Name");
 
         jLabel6.setText("Rating");
-
-        jSlider1.setMaximum(5);
-        jSlider1.setMinimum(1);
-        jSlider1.setMinorTickSpacing(1);
 
         jLabel7.setText("Enter Your Comment");
 
@@ -63,24 +68,79 @@ public class FeedbackUpdate extends javax.swing.JFrame {
             }
         });
 
+        oneStar.setText("★");
+        oneStar.setBorder(null);
+        oneStar.setBorderPainted(false);
+        oneStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                oneStarActionPerformed(evt);
+            }
+        });
+
+        twoStar.setText("★");
+        twoStar.setBorder(null);
+        twoStar.setBorderPainted(false);
+        twoStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                twoStarActionPerformed(evt);
+            }
+        });
+
+        threeStar.setText("★");
+        threeStar.setBorder(null);
+        threeStar.setBorderPainted(false);
+        threeStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                threeStarActionPerformed(evt);
+            }
+        });
+
+        fourStar.setText("★");
+        fourStar.setBorder(null);
+        fourStar.setBorderPainted(false);
+        fourStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fourStarActionPerformed(evt);
+            }
+        });
+
+        fiveStar.setText("★");
+        fiveStar.setBorder(null);
+        fiveStar.setBorderPainted(false);
+        fiveStar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fiveStarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(85, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(feedbackName, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(81, 81, 81))
             .addGroup(layout.createSequentialGroup()
                 .addGap(159, 159, 159)
                 .addComponent(feedFormUpdate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(85, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(oneStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(twoStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(threeStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fourStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(fiveStar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane4)
+                        .addComponent(jLabel6)
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(feedbackName, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(81, 81, 81))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -91,9 +151,16 @@ public class FeedbackUpdate extends javax.swing.JFrame {
                 .addComponent(feedbackName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(threeStar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fourStar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fiveStar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(oneStar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(twoStar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,11 +173,190 @@ public class FeedbackUpdate extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void feedFormUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedFormUpdateActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        FeedbackController controller = new FeedbackController();
+        
+        int passedRating = choice;
+        
+        String name = feedbackName.getText().trim();
+        String comment = feedbackComment.getText().trim();
 
+        if (name.isEmpty() || comment.isEmpty() || choice < 1 || choice > 5 ){
+            JOptionPane.showMessageDialog(this, "Please fill in all fields and select a rating.");
+            return;
+        }
+
+        selectedFeedback.setName(name);
+        selectedFeedback.setRating(choice);
+        selectedFeedback.setComments(comment);
+
+        controller.updateFeedback(selectedFeedback); 
+
+        mainFrame.loadFeedbackTable(); // Refresh
+
+        JOptionPane.showMessageDialog(this, "Feedback updated successfully.");
+        this.dispose();
     }//GEN-LAST:event_feedFormUpdateActionPerformed
 
+    public int choice;
+    
+    public void switchRating(){
+        switch(choice){
+            case 1 -> {
+                oneStar.setForeground(Color.yellow);
+                twoStar.setForeground(Color.black);
+                threeStar.setForeground(Color.black);
+                fourStar.setForeground(Color.black);
+                fiveStar.setForeground(Color.black);
+                oneStar.setSelected(true);
+                twoStar.setSelected(false);
+                threeStar.setSelected(false);
+                fourStar.setSelected(false);
+                fiveStar.setSelected(false);
+            }
+            case 2 -> { 
+                oneStar.setForeground(Color.yellow);
+                twoStar.setForeground(Color.yellow);
+                threeStar.setForeground(Color.black);
+                fourStar.setForeground(Color.black);
+                fiveStar.setForeground(Color.black);
+                oneStar.setSelected(false);
+                twoStar.setSelected(true);
+                threeStar.setSelected(false);
+                fourStar.setSelected(false);
+                fiveStar.setSelected(false);
+            }
+            case 3 -> { 
+                oneStar.setForeground(Color.yellow);
+                twoStar.setForeground(Color.yellow);
+                threeStar.setForeground(Color.yellow);
+                fourStar.setForeground(Color.black);
+                fiveStar.setForeground(Color.black);
+                oneStar.setSelected(false);
+                twoStar.setSelected(false);
+                threeStar.setSelected(true);
+                fourStar.setSelected(false);
+                fiveStar.setSelected(false);
+            }
+            case 4 -> { 
+                oneStar.setForeground(Color.yellow);
+                twoStar.setForeground(Color.yellow);
+                threeStar.setForeground(Color.yellow);
+                fourStar.setForeground(Color.yellow);
+                fiveStar.setForeground(Color.black);
+                oneStar.setSelected(false);
+                twoStar.setSelected(false);
+                threeStar.setSelected(false);
+                fourStar.setSelected(true);
+                fiveStar.setSelected(false);
+            }
+            case 5 -> { 
+                oneStar.setForeground(Color.yellow);
+                twoStar.setForeground(Color.yellow);
+                threeStar.setForeground(Color.yellow);
+                fourStar.setForeground(Color.yellow);
+                fiveStar.setForeground(Color.yellow);
+                oneStar.setSelected(false);
+                twoStar.setSelected(false);
+                threeStar.setSelected(false);
+                fourStar.setSelected(false);
+                fiveStar.setSelected(true);
+            }
+            default -> JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+            }  
+    }
+    
+    private void oneStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneStarActionPerformed
+        // TODO add your handling code here:
+        choice = 1;
+        oneStar.setForeground(Color.yellow);
+        twoStar.setForeground(Color.black);
+        threeStar.setForeground(Color.black);
+        fourStar.setForeground(Color.black);
+        fiveStar.setForeground(Color.black);
+        oneStar.setSelected(true);
+        twoStar.setSelected(false);
+        threeStar.setSelected(false);
+        fourStar.setSelected(false);
+        fiveStar.setSelected(false);
+    }//GEN-LAST:event_oneStarActionPerformed
+
+    private void twoStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_twoStarActionPerformed
+        // TODO add your handling code here:
+        choice = 2;
+        oneStar.setForeground(Color.yellow);
+        twoStar.setForeground(Color.yellow);
+        threeStar.setForeground(Color.black);
+        fourStar.setForeground(Color.black);
+        fiveStar.setForeground(Color.black);
+        oneStar.setSelected(false);
+        twoStar.setSelected(true);
+        threeStar.setSelected(false);
+        fourStar.setSelected(false);
+        fiveStar.setSelected(false);
+    }//GEN-LAST:event_twoStarActionPerformed
+
+    private void threeStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_threeStarActionPerformed
+        // TODO add your handling code here:
+        choice = 3;
+        oneStar.setForeground(Color.yellow);
+        twoStar.setForeground(Color.yellow);
+        threeStar.setForeground(Color.yellow);
+        fourStar.setForeground(Color.black);
+        fiveStar.setForeground(Color.black);
+        oneStar.setSelected(false);
+        twoStar.setSelected(false);
+        threeStar.setSelected(true);
+        fourStar.setSelected(false);
+        fiveStar.setSelected(false);
+    }//GEN-LAST:event_threeStarActionPerformed
+
+    private void fourStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fourStarActionPerformed
+        // TODO add your handling code here:
+        choice = 4;
+        oneStar.setForeground(Color.yellow);
+        twoStar.setForeground(Color.yellow);
+        threeStar.setForeground(Color.yellow);
+        fourStar.setForeground(Color.yellow);
+        fiveStar.setForeground(Color.black);
+        oneStar.setSelected(false);
+        twoStar.setSelected(false);
+        threeStar.setSelected(false);
+        fourStar.setSelected(true);
+        fiveStar.setSelected(false);
+    }//GEN-LAST:event_fourStarActionPerformed
+
+    private void fiveStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fiveStarActionPerformed
+        // TODO add your handling code here:
+        choice = 5;
+        oneStar.setForeground(Color.yellow);
+        twoStar.setForeground(Color.yellow);
+        threeStar.setForeground(Color.yellow);
+        fourStar.setForeground(Color.yellow);
+        fiveStar.setForeground(Color.yellow);
+        oneStar.setSelected(false);
+        twoStar.setSelected(false);
+        threeStar.setSelected(false);
+        fourStar.setSelected(false);
+        fiveStar.setSelected(true);
+    }//GEN-LAST:event_fiveStarActionPerformed
+
+    private Feedback selectedFeedback;
+    private MainFrame mainFrame;
+
+    public FeedbackUpdate(MainFrame mainFrame, Feedback selectedFeedback) {
+        initComponents();
+        this.mainFrame = mainFrame;
+        this.selectedFeedback = selectedFeedback;
+
+        // preload fields
+        feedbackName.setText(selectedFeedback.getName());
+        feedbackComment.setText(selectedFeedback.getComments());
+        this.choice = selectedFeedback.getRating();
+        switchRating();
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -150,10 +396,14 @@ public class FeedbackUpdate extends javax.swing.JFrame {
     private javax.swing.JButton feedFormUpdate;
     private javax.swing.JTextArea feedbackComment;
     private javax.swing.JTextField feedbackName;
+    private javax.swing.JToggleButton fiveStar;
+    private javax.swing.JToggleButton fourStar;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JSlider jSlider1;
+    private javax.swing.JToggleButton oneStar;
+    private javax.swing.JToggleButton threeStar;
+    private javax.swing.JToggleButton twoStar;
     // End of variables declaration//GEN-END:variables
 }

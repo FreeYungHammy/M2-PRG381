@@ -4,8 +4,11 @@
  */
 package PRG381_Milestone2.view;
 
+import PRG381_Milestone2.controller.CounselorController;
+import PRG381_Milestone2.model.Counselor;
 import java.util.Date;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,11 +19,7 @@ public class CounselorUpdate extends javax.swing.JFrame {
     /**
      * Creates new form CounselorUpdate
      */
-    public CounselorUpdate() {
-        initComponents();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -126,11 +125,47 @@ public class CounselorUpdate extends javax.swing.JFrame {
     }//GEN-LAST:event_counsAvailActionPerformed
 
     private void counFormUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counFormUpdateActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
+        CounselorController controller = new CounselorController();
+        String updatedName = counsName.getText().trim();
+        String updatedSpec = counsSpec.getText().trim();
+        String updatedAvail = counsAvail.getSelectedItem().toString();
 
+        // validate input
+        if (updatedName.isEmpty() || updatedSpec.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.");
+            return;
+        }
+
+        selectedCounselor.setName(updatedName);
+        selectedCounselor.setSpec(updatedSpec);
+        selectedCounselor.setAvailable(updatedAvail);
+
+        controller.updateCounselor(selectedCounselor);
+
+        JOptionPane.showMessageDialog(this, "Counselor updated successfully.");
+
+        mainFrame.loadCounselorTable();  
+
+        this.dispose();
     }//GEN-LAST:event_counFormUpdateActionPerformed
 
+    private Counselor selectedCounselor;
+    private MainFrame mainFrame;
+
+    public CounselorUpdate(MainFrame mainFrame, Counselor selectedCounselor) {
+        initComponents();
+        this.mainFrame = mainFrame;
+        this.selectedCounselor = selectedCounselor;
+
+        // preload fields
+        counsName.setText(selectedCounselor.getName());
+        counsSpec.setText(selectedCounselor.getSpec());
+        counsAvail.setSelectedItem(selectedCounselor.getAvailable());
+
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+    
     /**
      * @param args the command line arguments
      */
@@ -161,7 +196,7 @@ public class CounselorUpdate extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CounselorUpdate().setVisible(true);
+                
             }
         });
     }

@@ -12,18 +12,21 @@ import java.util.Date;
  * @author calvi
  */
 public class Counselor {
-    
+    private int id;
     private String name;
     private String specialization;
     private String available;
     
-    public Counselor(String name, String specialization, String available)
+    public Counselor(int id, String name, String specialization, String available)
     {
+        this.id = id;
         this.name = name;
         this.specialization = specialization;
         this.available = available;
     }
-    
+    public int getId(){
+        return id;
+    }
     public String getName() {
         return name;
     }

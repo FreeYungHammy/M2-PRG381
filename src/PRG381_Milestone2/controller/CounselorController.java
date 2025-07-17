@@ -46,9 +46,9 @@ public class CounselorController {
         try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             rs.next();
             if (rs.getInt(1) == 0) {
-                insertCounselor(new Counselor("Dr. Mbatha", "Family Therapy", "yes"));
-                insertCounselor(new Counselor("Dr. Singh", "Career Counseling", "yes"));
-                insertCounselor(new Counselor("Dr. Dlamini", "Mental Health", "no"));
+                insertCounselor(new Counselor(-1, "Dr. Mbatha", "Family Therapy", "Yes"));
+                insertCounselor(new Counselor(-1, "Dr. Singh", "Career Counseling", "Yes"));
+                insertCounselor(new Counselor(-1, "Dr. Dlamini", "Mental Health", "No"));
                 System.out.println("Dummy counselor data inserted.");
             }
         } catch (SQLException e) {
@@ -61,7 +61,7 @@ public class CounselorController {
         //validation 
         //creating counselor object
         
-        Counselor newCounselor = new Counselor(name, specialization, available);
+        Counselor newCounselor = new Counselor(0, name, specialization, available);
         insertCounselor(newCounselor);
         //adding to array update database at the end
     }
@@ -92,15 +92,43 @@ public class CounselorController {
         String sql = "SELECT * FROM Counselor";
         try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
+                int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String spec = rs.getString("specialization");
                 String avail = rs.getString("available");
-                list.add(new Counselor(name, spec, avail));
+                list.add(new Counselor(id, name, spec, avail));
             }
         } catch (SQLException e) {
             System.out.println("Error retrieving counselors: " + e.getMessage());
         }
         return list;
     }
+    
+    public void updateCounselor(Counselor c) {
+        String sql = "UPDATE Counselor SET name = ?, specialization = ?, available = ? WHERE id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, c.getName());
+            stmt.setString(2, c.getSpec());
+            stmt.setString(3, c.getAvailable());
+            stmt.setInt(4, c.getId());
+            stmt.executeUpdate();
+            System.out.println("Counselor with ID " + c.getId() + " updated.");
+        } catch (SQLException e) {
+            System.out.println("Error updating counselor: " + e.getMessage());
+        }
+    }
+    
+    public void deleteCounselor(int id) {
+        String sql = "DELETE FROM Counselor WHERE id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Counselor with ID " + id + " deleted.");
+        } catch (SQLException e) {
+            System.out.println("Error deleting counselor: " + e.getMessage());
+        }
+    }
+
+
 
 }

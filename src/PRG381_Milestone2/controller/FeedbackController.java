@@ -45,9 +45,9 @@ public class FeedbackController {
         try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             rs.next();
             if (rs.getInt(1) == 0) {
-                insertFeedback(new Feedback("Calvin", 5, "Excellent service!"));
-                insertFeedback(new Feedback("Danielle", 4, "Very helpful session."));
-                insertFeedback(new Feedback("Alex", 3, "Could be more thorough."));
+                insertFeedback(new Feedback(-1, "Calvin", 5, "Excellent service!"));
+                insertFeedback(new Feedback(-1, "Danielle", 4, "Very helpful session."));
+                insertFeedback(new Feedback(-1, "Alex", 3, "Could be more thorough."));
                 System.out.println("Dummy feedback data inserted.");
             }
         } catch (SQLException e) {
@@ -60,7 +60,7 @@ public class FeedbackController {
         
         //validation
         //feedback object creation
-        Feedback newFeedback = new Feedback(name, rating, comments);
+        Feedback newFeedback = new Feedback(0, name, rating, comments);
        
         insertFeedback(newFeedback);
     }
@@ -94,14 +94,40 @@ public class FeedbackController {
         String sql = "SELECT * FROM Feedback";
         try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
+                int Id = rs.getInt("Id");
                 String name = rs.getString("name");
                 int rating = rs.getInt("rating");
                 String comments = rs.getString("comments");
-                feedbackList.add(new Feedback(name, rating, comments));
+                feedbackList.add(new Feedback(Id, name, rating, comments));
             }
         } catch (SQLException e) {
             System.out.println("Error retrieving feedback: " + e.getMessage());
         }
         return feedbackList;
+    }
+    
+    public void updateFeedback(Feedback f) {
+        String sql = "UPDATE Feedback SET name = ?, rating = ?, comments = ? WHERE id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, f.getName());
+            stmt.setInt(2, f.getRating());
+            stmt.setString(3, f.getComments());
+            stmt.setInt(4, f.getId());
+            stmt.executeUpdate();
+            System.out.println("Feedback with ID " + f.getId() + " updated.");
+        } catch (SQLException e) {
+            System.out.println("Error updating Feedback: " + e.getMessage());
+        }
+    }
+    
+    public void deleteFeedback(int id) {
+        String sql = "DELETE FROM Feedback WHERE id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            System.out.println("Feedback with ID " + id + " deleted.");
+        } catch (SQLException e) {
+            System.out.println("Error deleting Feedback: " + e.getMessage());
+        }
     }
 }

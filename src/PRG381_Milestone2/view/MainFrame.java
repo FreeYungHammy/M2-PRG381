@@ -162,7 +162,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(appointDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(appointTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -211,48 +211,43 @@ public class MainFrame extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap(50, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel12)))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(62, 62, 62)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(339, 339, 339)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 534, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(299, 299, 299))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addComponent(updateAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(464, 464, 464)
-                                .addComponent(deleteAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addComponent(deleteAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 710, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(50, 50, 50)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel1)
-                        .addGap(10, 10, 10))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updateAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deleteAppoint, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Appointments", jDesktopPane1);
@@ -629,32 +624,65 @@ public class MainFrame extends javax.swing.JFrame {
     private void appointCounsNameActionPerformed(java.awt.event.ActionEvent evt){
         
     }
-    
+
     private void counsAvailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counsAvailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_counsAvailActionPerformed
 
     private void updateAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAppointActionPerformed
         // TODO add your handling code here:
-        AppointmentUpdate appUpdateForm = new AppointmentUpdate();  // create an instance of the new form
-        appUpdateForm.setVisible(true);               // show it
-        appUpdateForm.setLocationRelativeTo(null); 
-        getSelectedAppointment();
+        Appointment selected = getSelectedAppointment();
+
+        if (selected == null) {
+            //logic for this has been done in the getSelectedAppointment
+            return;
+        }
+
+        // Open the update form with the selected object
+        AppointmentUpdate updateForm = new AppointmentUpdate(this, selected);
+        updateForm.setVisible(true);
     }//GEN-LAST:event_updateAppointActionPerformed
 
     private void updateCounsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCounsActionPerformed
-        // TODO add your handling code here:
-        CounselorUpdate counUpdateForm = new CounselorUpdate();  // create an instance of the new form
-        counUpdateForm.setVisible(true);               // show it
-        counUpdateForm.setLocationRelativeTo(null);
+        int selectedRow = CounselorTbl.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a counselor to update.");
+            return;
+        }
+
+        // extract data from selected row
+        int id = Integer.parseInt(CounselorTbl.getValueAt(selectedRow, 0).toString());  // ID (hidden column)
+        String name = CounselorTbl.getValueAt(selectedRow, 1).toString();
+        String specialization = CounselorTbl.getValueAt(selectedRow, 2).toString();
+        String availableString = CounselorTbl.getValueAt(selectedRow, 3).toString();
+
+        // create counselor object
+        Counselor selectedCounselor = new Counselor(id, name, specialization, availableString);
+
+        // pass to update form
+        CounselorUpdate updateForm = new CounselorUpdate(this, selectedCounselor);
+        updateForm.setVisible(true);
         
     }//GEN-LAST:event_updateCounsActionPerformed
 
     private void updateFeedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateFeedActionPerformed
-        // TODO add your handling code here:
-        FeedbackUpdate feedUpdateForm = new FeedbackUpdate();  // create an instance of the new form
-        feedUpdateForm.setVisible(true);               // show it
-        feedUpdateForm.setLocationRelativeTo(null);
+        int selectedRow = feedbackTbl.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a feedback entry to update.");
+            return;
+        }
+
+        int id = Integer.parseInt(feedbackTbl.getValueAt(selectedRow, 0).toString());
+        String name = feedbackTbl.getValueAt(selectedRow, 1).toString();
+        int ratingPassed = Integer.parseInt(feedbackTbl.getValueAt(selectedRow, 2).toString());
+        String comment = feedbackTbl.getValueAt(selectedRow, 3).toString();
+
+        Feedback selectedFeedback = new Feedback(id, name, ratingPassed, comment);
+
+        FeedbackUpdate updateForm = new FeedbackUpdate(this, selectedFeedback);
+        updateForm.setVisible(true);
     }//GEN-LAST:event_updateFeedActionPerformed
 
     private void createAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAppointActionPerformed
@@ -755,7 +783,7 @@ public class MainFrame extends javax.swing.JFrame {
         unrate();
         feedbackComment.setText("");
     }//GEN-LAST:event_createFeedbackActionPerformed
-    
+ 
     public void unrate(){
         rating = 0;
         oneStar.setSelected(false);
@@ -770,12 +798,19 @@ public class MainFrame extends javax.swing.JFrame {
         fiveStar.setForeground(Color.black);
     }
     
-    private void loadAppointmentTable(){
-        AppointmentController controller = new AppointmentController();
-        List<Appointment> appointmentList = controller.getAllAppointments();
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Counselor Name", "Date", "Time"}, 0);
+    public void loadAppointmentTable(){
+          AppointmentController controller = new AppointmentController();
+        List<Appointment> appointmentList = controller.getAllAppointments(); 
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Counselor Name", "Date", "Time"}, 0);
+
+        appointmentList.sort(Comparator
+            .comparing(Appointment::getDate)
+            .thenComparing(Appointment::getTime));
+
+
         for (Appointment ap : appointmentList) {
             model.addRow(new Object[]{
+                ap.getId(),               // hidden ID
                 ap.getCounName(),
                 ap.getDate(),
                 ap.getTime()
@@ -783,6 +818,11 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         appointmentsTbl.setModel(model);
+
+        // no ID column
+        appointmentsTbl.getColumnModel().getColumn(0).setMinWidth(0);
+        appointmentsTbl.getColumnModel().getColumn(0).setMaxWidth(0);
+        appointmentsTbl.getColumnModel().getColumn(0).setWidth(0);
     }
     
     
@@ -805,27 +845,27 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
-    public Appointment getSelectedAppointment(){
+    public Appointment getSelectedAppointment() {
         int selectedRow = appointmentsTbl.getSelectedRow();
-        if(selectedRow == -1){
-            // case for no row selected 
-            JOptionPane.showMessageDialog(this, "Please select an appointment.");
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select an appointment to update.");
             return null;
         }
-        
-        String counselorName = appointmentsTbl.getValueAt(selectedRow, 0).toString();
-        String dateString = appointmentsTbl.getValueAt(selectedRow, 1).toString();
-        String time = appointmentsTbl.getValueAt(selectedRow, 2).toString();
-        
-        Date date = null;
-        try{
+
+        int id = Integer.parseInt(appointmentsTbl.getValueAt(selectedRow, 0).toString());
+        String counselorName = appointmentsTbl.getValueAt(selectedRow, 1).toString();
+        String dateString = appointmentsTbl.getValueAt(selectedRow, 2).toString();
+        String time = appointmentsTbl.getValueAt(selectedRow, 3).toString();
+
+        try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            date = sdf.parse(dateString);
-        } catch (ParseException e){
-            JOptionPane.showMessageDialog(this, "Error passing date: " + e.getMessage());
+            Date date = sdf.parse(dateString);
+            return new Appointment(id, counselorName, date, time);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Error parsing date: " + e.getMessage());
             return null;
         }
-        return new Appointment(0, counselorName, date, time);
     }
     
     private void loadCounselorNames(){
@@ -838,28 +878,41 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
-    private void loadCounselorTable(){
+    public void loadCounselorTable(){
         CounselorController controller = new CounselorController();
         List<Counselor> counselorList = controller.getAllCounselors();
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Counselor Name", "Specialization", "Is Avaliable"}, 0);
-        for (Counselor cl : counselorList) {
-            model.addRow(new Object[]{
-                cl.getName(),
-                cl.getSpec(),
-                cl.getAvailable()
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(new String[] {
+            "ID", "Counselor Name", "Specialization", "Available"
+        });
+
+        for (Counselor c : counselorList) {
+            model.addRow(new Object[] {
+                c.getId(),             // ID (for update/delete logic)
+                c.getName(),           // Counselor Name
+                c.getSpec(),           // Specialization
+                c.getAvailable()       // Available
             });
         }
 
         CounselorTbl.setModel(model);
+
+        CounselorTbl.getColumnModel().getColumn(0).setMinWidth(0);
+        CounselorTbl.getColumnModel().getColumn(0).setMinWidth(0);
+        CounselorTbl.getColumnModel().getColumn(0).setMaxWidth(0);
+        CounselorTbl.getColumnModel().getColumn(0).setWidth(0);
     }
     
-    private void loadFeedbackTable(){
+    public void loadFeedbackTable(){
         FeedbackController controller = new FeedbackController();
-        List<Feedback> feedbackList = controller.getAllFeedback();
+        List<Feedback> appointmentList = controller.getAllFeedback(); 
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Student Name", "Rating", "Comments"}, 0);
 
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Student Name", "Rating", "Comments"}, 0);
-        for (Feedback fb : feedbackList) {
+
+        for (Feedback fb : appointmentList) {
             model.addRow(new Object[]{
+                fb.getId(),               
                 fb.getName(),
                 fb.getRating(),
                 fb.getComments()
@@ -867,6 +920,12 @@ public class MainFrame extends javax.swing.JFrame {
         }
 
         feedbackTbl.setModel(model);
+
+        // no ID column
+        feedbackTbl.getColumnModel().getColumn(0).setMinWidth(0);
+        feedbackTbl.getColumnModel().getColumn(0).setMaxWidth(0);
+        feedbackTbl.getColumnModel().getColumn(0).setWidth(0);
+    
     }
     
     private void oneStarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_oneStarActionPerformed
@@ -942,24 +1001,78 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void deleteAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAppointActionPerformed
         // TODO add your handling code here:
-        AppDelete app = new AppDelete();
-        
-        app.deleteMethod();//found in model AppDelete
+         int selectedRow = appointmentsTbl.getSelectedRow();
 
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select an appointment to delete first.");
+            return;
+        }
+
+        // confirm before deleting
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this appointment?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        // ID column accessible with index 0 but hidden
+        int id = Integer.parseInt(appointmentsTbl.getValueAt(selectedRow, 0).toString());
+
+        AppointmentController controller = new AppointmentController();
+        controller.deleteAppointmentById(id);
+
+        JOptionPane.showMessageDialog(this, "Appointment deleted successfully.");
+
+        loadAppointmentTable(); // refresh the table
     }//GEN-LAST:event_deleteAppointActionPerformed
 
     private void DeleteCounsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCounsActionPerformed
-        // TODO add your handling code here:
-        CounsDelete couns = new CounsDelete();
-        
-        couns.deleteMethod();//found in model CounsDelete
+       int selectedRow = CounselorTbl.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a counselor to delete first.");
+            return;
+        }
+
+        // confirm before deleting
+        int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this counselor?", "Confirm Delete", JOptionPane.YES_NO_OPTION);
+        if (confirm != JOptionPane.YES_OPTION) {
+            return;
+        }
+
+        // ID column accessible with index 0 but hidden
+        int id = Integer.parseInt(CounselorTbl.getValueAt(selectedRow, 0).toString());
+
+        CounselorController controller = new CounselorController();
+        controller.deleteCounselor(id);
+
+        JOptionPane.showMessageDialog(this, "Appointment deleted successfully.");
+
+        loadCounselorTable(); // refresh the table
     }//GEN-LAST:event_DeleteCounsActionPerformed
 
     private void deleteCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCommActionPerformed
-        // TODO add your handling code here:
-        FeedbackDelete feed = new FeedbackDelete();
-        
-        feed.deleteMethod();//found in model FeedbackDelete
+        FeedbackController controller = new FeedbackController();
+        int selectedRow = feedbackTbl.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select a feedback entry to delete.");
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete this feedback entry?",
+                "Confirm Deletion",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirm != JOptionPane.YES_OPTION) return;
+
+        int id = Integer.parseInt(feedbackTbl.getValueAt(selectedRow, 0).toString());
+
+        controller.deleteFeedback(id); 
+
+        loadFeedbackTable();
+
+        JOptionPane.showMessageDialog(this, "Feedback deleted successfully.");
     }//GEN-LAST:event_deleteCommActionPerformed
 
     /**

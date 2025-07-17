@@ -137,4 +137,22 @@ public class AppointmentController {
         }
     }
 
+    public void deleteAppointmentById(int id) {
+        String sql = "DELETE FROM Appointment WHERE id = ?";
+
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            int affectedRows = stmt.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Appointment deleted successfully.");
+            } else {
+                System.out.println("No appointment found with ID: " + id);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error deleting appointment: " + e.getMessage());
+        }
+    }
+
+    
 }

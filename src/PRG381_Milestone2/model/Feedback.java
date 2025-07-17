@@ -9,17 +9,22 @@ package PRG381_Milestone2.model;
  * @author calvi
  */
 public class Feedback {
+    private int Id;
     private String name;
     private int rating;
     private String comments;
     
-    public Feedback (String name, int rating, String comments)
+    public Feedback (int Id, String name, int rating, String comments)
     {
+        this.Id = Id;
         this.name = name;
         this.rating = rating;
         this.comments = comments;
     }
     
+    public int getId(){
+        return Id;
+    }
     public String getName()
     {
         return name;

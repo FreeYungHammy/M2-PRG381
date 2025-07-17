@@ -11,7 +11,6 @@ import PRG381_Milestone2.model.Counselor;
 import java.util.Date;
 import java.util.List;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -108,35 +107,37 @@ public class AppointmentUpdate extends javax.swing.JFrame {
     private void appFormUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appFormUpdateActionPerformed
         // TODO add your handling code here:
         AppointmentController controller = new AppointmentController();
-         String updatedName = appointCounsName.getSelectedItem().toString();
+
+        String updatedName = appointCounsName.getSelectedItem().toString();
         Date updatedDate = appointDate.getDate();
         String updatedTime = appointTime.getSelectedItem().toString();
 
-        // update selected objects values
         selectedAppointment.setCounName(updatedName);
         selectedAppointment.setDate(updatedDate);
         selectedAppointment.setTime(updatedTime);
 
-        // pass object to the controller
         controller.updateAppointmentInDB(selectedAppointment);
-          
+
         JOptionPane.showMessageDialog(this, "Appointment updated successfully.");
-        
+
+        mainFrame.loadAppointmentTable(); 
         dispose(); 
     }//GEN-LAST:event_appFormUpdateActionPerformed
     
     private Appointment selectedAppointment;
+    private MainFrame mainFrame; 
 
-    public AppointmentUpdate(Appointment appointment) {
+    public AppointmentUpdate(MainFrame mainFrame, Appointment selectedAppointment) {
         initComponents();
-        this.selectedAppointment = appointment;
+        this.selectedAppointment = selectedAppointment;
+        this.mainFrame = mainFrame;
 
         loadCounselorNames();
-        loadTimes(); 
+        loadTimes();
 
-        appointCounsName.setSelectedItem(appointment.getCounName());
-        appointDate.setDate(appointment.getDate());
-        appointTime.setSelectedItem(appointment.getTime());
+        appointCounsName.setSelectedItem(selectedAppointment.getCounName());
+        appointDate.setDate(selectedAppointment.getDate());
+        appointTime.setSelectedItem(selectedAppointment.getTime());
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
