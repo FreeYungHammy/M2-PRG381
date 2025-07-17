@@ -110,6 +110,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         jLabel13.setText("Counselor Name");
 
+        appointCounsName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                appointCounsNameActionPerformed(evt);
+            }
+        });
+
         jLabel14.setText("Appointment Date");
 
         jLabel15.setText("Appointment Time");
@@ -601,10 +607,14 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void updateAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAppointActionPerformed
         // TODO add your handling code here:
-        AppointmentUpdate appUpdateForm = new AppointmentUpdate();  // create an instance of the new form
-        appUpdateForm.setVisible(true);               // show it
-        appUpdateForm.setLocationRelativeTo(null); 
-        getSelectedAppointment();
+         Appointment selected = getSelectedAppointment();
+
+        if (selected == null) {
+            return; 
+        }
+
+        AppointmentUpdate updateForm = new AppointmentUpdate(selected);
+        updateForm.setVisible(true); // show popup only when valid
     }//GEN-LAST:event_updateAppointActionPerformed
 
     private void updateCounsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateCounsActionPerformed
@@ -724,32 +734,31 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
-    public Appointment getSelectedAppointment(){
+    public Appointment getSelectedAppointment() {
         int selectedRow = appointmentsTbl.getSelectedRow();
-        if(selectedRow == -1){
-            // case for no row selected 
-            JOptionPane.showMessageDialog(this, "Please select an appointment.");
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Please select an appointment to update.");
             return null;
         }
-        
+
         String counselorName = appointmentsTbl.getValueAt(selectedRow, 0).toString();
         String dateString = appointmentsTbl.getValueAt(selectedRow, 1).toString();
         String time = appointmentsTbl.getValueAt(selectedRow, 2).toString();
-        
-        Date date = null;
-        try{
+
+        try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            date = sdf.parse(dateString);
-        } catch (ParseException e){
-            JOptionPane.showMessageDialog(this, "Error passing date: " + e.getMessage());
+            Date date = sdf.parse(dateString);
+            return new Appointment(counselorName, date, time);
+        } catch (ParseException e) {
+            JOptionPane.showMessageDialog(this, "Error parsing date: " + e.getMessage());
             return null;
         }
-        return new Appointment(counselorName, date, time);
     }
     
     private void loadCounselorNames(){
         CounselorController controller = new CounselorController();
-    List<Counselor> counselorList = controller.getAllCounselors();
+        List<Counselor> counselorList = controller.getAllCounselors();
 
         appointCounsName.removeAllItems();
         for (Counselor c : counselorList) {
@@ -833,6 +842,10 @@ public class MainFrame extends javax.swing.JFrame {
         fiveStar.setBackground(Color.yellow);
 
     }//GEN-LAST:event_fiveStarActionPerformed
+
+    private void appointCounsNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appointCounsNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_appointCounsNameActionPerformed
 
     /**
      * @param args the command line arguments

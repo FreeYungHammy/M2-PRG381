@@ -5,6 +5,7 @@
 package PRG381_Milestone2.view;
 
 import PRG381_Milestone2.controller.CounselorController;
+import PRG381_Milestone2.model.Appointment;
 import PRG381_Milestone2.model.Counselor;
 import java.util.List;
 import javax.swing.*;
@@ -104,10 +105,23 @@ public class AppointmentUpdate extends javax.swing.JFrame {
     private void appFormUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appFormUpdateActionPerformed
         // TODO add your handling code here:
         
-        
-        
-        
     }//GEN-LAST:event_appFormUpdateActionPerformed
+    
+    private Appointment selectedAppointment;
+
+    public AppointmentUpdate(Appointment appointment) {
+        initComponents();
+        this.selectedAppointment = appointment;
+
+        // Set form values based on what was selected
+        appointCounsName.setSelectedItem(appointment.getCounName());
+        appointDate.setDate(appointment.getDate());
+        appointTime.setSelectedItem(appointment.getTime());
+        
+        loadCounselorNames();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+    
     
     private void loadCounselorNames(){
         CounselorController controller = new CounselorController();
