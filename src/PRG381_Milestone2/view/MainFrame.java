@@ -18,6 +18,7 @@ import PRG381_Milestone2.model.Appointment;
 import PRG381_Milestone2.model.CounsDelete;
 import PRG381_Milestone2.model.Delete;
 import PRG381_Milestone2.model.FeedbackDelete;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import java.text.*;
 
@@ -625,6 +626,10 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void appointCounsNameActionPerformed(java.awt.event.ActionEvent evt){
+        
+    }
+    
     private void counsAvailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_counsAvailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_counsAvailActionPerformed
