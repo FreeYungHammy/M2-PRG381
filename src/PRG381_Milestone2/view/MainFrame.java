@@ -21,6 +21,7 @@ import PRG381_Milestone2.model.FeedbackDelete;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import java.text.*;
+import javax.swing.JTextField;
 
 
 /**
@@ -39,7 +40,10 @@ public class MainFrame extends javax.swing.JFrame {
         loadAppointmentTable();
         loadCounselorTable();
         loadFeedbackTable();  
+        ((JTextField) appointDate.getDateEditor().getUiComponent()).setEditable(false);
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -197,7 +201,15 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Counsellor Name", "Appointment Date", "Appointment Time"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(appointmentsTbl);
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -261,7 +273,15 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Counselor Name", "Specialization", "Available"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(CounselorTbl);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -405,7 +425,15 @@ public class MainFrame extends javax.swing.JFrame {
             new String [] {
                 "Student Name", "Rating", "Comments"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(feedbackTbl);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -801,7 +829,12 @@ public class MainFrame extends javax.swing.JFrame {
     public void loadAppointmentTable(){
           AppointmentController controller = new AppointmentController();
         List<Appointment> appointmentList = controller.getAllAppointments(); 
-        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Counselor Name", "Date", "Time"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Counselor Name", "Date", "Time"}, 0){
+            @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+        };
 
         appointmentList.sort(Comparator
             .comparing(Appointment::getDate)
@@ -882,7 +915,13 @@ public class MainFrame extends javax.swing.JFrame {
         CounselorController controller = new CounselorController();
         List<Counselor> counselorList = controller.getAllCounselors();
 
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel(){
+            @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+        };
+        
         model.setColumnIdentifiers(new String[] {
             "ID", "Counselor Name", "Specialization", "Available"
         });
@@ -907,9 +946,13 @@ public class MainFrame extends javax.swing.JFrame {
     public void loadFeedbackTable(){
         FeedbackController controller = new FeedbackController();
         List<Feedback> appointmentList = controller.getAllFeedback(); 
-        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Student Name", "Rating", "Comments"}, 0);
-
-
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Student Name", "Rating", "Comments"}, 0){
+            @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false;
+                }
+        };
+        
         for (Feedback fb : appointmentList) {
             model.addRow(new Object[]{
                 fb.getId(),               
