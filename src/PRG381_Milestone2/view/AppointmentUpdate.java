@@ -4,11 +4,14 @@
  */
 package PRG381_Milestone2.view;
 
+import PRG381_Milestone2.controller.AppointmentController;
 import PRG381_Milestone2.controller.CounselorController;
 import PRG381_Milestone2.model.Appointment;
 import PRG381_Milestone2.model.Counselor;
+import java.util.Date;
 import java.util.List;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -104,7 +107,22 @@ public class AppointmentUpdate extends javax.swing.JFrame {
 
     private void appFormUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_appFormUpdateActionPerformed
         // TODO add your handling code here:
+        AppointmentController controller = new AppointmentController();
+         String updatedName = appointCounsName.getSelectedItem().toString();
+        Date updatedDate = appointDate.getDate();
+        String updatedTime = appointTime.getSelectedItem().toString();
+
+        // update selected objects values
+        selectedAppointment.setCounName(updatedName);
+        selectedAppointment.setDate(updatedDate);
+        selectedAppointment.setTime(updatedTime);
+
+        // pass object to the controller
+        controller.updateAppointmentInDB(selectedAppointment);
+          
+        JOptionPane.showMessageDialog(this, "Appointment updated successfully.");
         
+        dispose(); 
     }//GEN-LAST:event_appFormUpdateActionPerformed
     
     private Appointment selectedAppointment;
@@ -113,15 +131,35 @@ public class AppointmentUpdate extends javax.swing.JFrame {
         initComponents();
         this.selectedAppointment = appointment;
 
-        // Set form values based on what was selected
+        loadCounselorNames();
+        loadTimes(); 
+
         appointCounsName.setSelectedItem(appointment.getCounName());
         appointDate.setDate(appointment.getDate());
         appointTime.setSelectedItem(appointment.getTime());
-        
-        loadCounselorNames();
+
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
+    private void loadTimes() {
+        String[] timeSlots = {
+            "08:00", "08:30",
+            "09:00", "09:30",
+            "10:00", "10:30",
+            "11:00", "11:30",
+            "12:00", "12:30",
+            "13:00", "13:30",
+            "14:00", "14:30",
+            "15:00", "15:30",
+            "16:00"
+        };
+
+        appointTime.removeAllItems();
+        for (String time : timeSlots) {
+            appointTime.addItem(time);
+        }
+    }
+
     
     private void loadCounselorNames(){
         CounselorController controller = new CounselorController();
@@ -132,6 +170,7 @@ public class AppointmentUpdate extends javax.swing.JFrame {
             appointCounsName.addItem(c.getName()); 
         }
     }
+    
     /**
      * @param args the command line arguments
      */

@@ -51,9 +51,9 @@ public class AppointmentController {
             if (rs.next() && rs.getInt(1) == 0) {
                 System.out.println("Inserting dummy data...");
 
-                insertAppointment(new Appointment("Dr. Smith", new Date(), "10:53"));
-                insertAppointment(new Appointment("Dr. Adams", new Date(), "14:23"));
-                insertAppointment(new Appointment("Dr. Ndlovu", new Date(), "13:43"));
+                insertAppointment(new Appointment(1, "Dr. Smith", new Date(), "10:53"));
+                insertAppointment(new Appointment(2, "Dr. Adams", new Date(), "14:23"));
+                insertAppointment(new Appointment(3, "Dr. Ndlovu", new Date(), "13:43"));
 
                 System.out.println("Dummy data inserted.");
             } else {
@@ -70,7 +70,7 @@ public class AppointmentController {
         
         //validation
         //-->then create appointment object
-        Appointment newApp = new Appointment(counselor, date, time);
+        Appointment newApp = new Appointment(0, counselor, date, time);
 
         //update list adn then maybe update database or only update database at end of operation
         insertAppointment(newApp);
@@ -103,20 +103,38 @@ public class AppointmentController {
     public List<Appointment> getAllAppointments() {
         List<Appointment> list = new ArrayList<>();
         String sql = "SELECT * FROM Appointment";
-    
-        try (Statement stmt = con.createStatement(); ResultSet rs = stmt.executeQuery(sql)) {
-            while (rs.next()) {
-                String counselor = rs.getString("counselor");
-                Date date = rs.getDate("date");
-                String time = rs.getString("time"); 
 
-                list.add(new Appointment(counselor, date, time));
+        try (PreparedStatement stmt = con.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+             
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("counselor");
+                Date date = rs.getDate("date");
+                String time = rs.getString("time");
+
+                list.add(new Appointment(id, name, date, time));
             }
+
         } catch (SQLException e) {
-            System.out.println("Error retrieving appointments: " + e.getMessage());
+            System.out.println("Error getting appointments from database: " + e.getMessage());
         }
 
         return list;
+    }
+
+    public void updateAppointmentInDB(Appointment app) {
+        String sql = "UPDATE Appointment SET counselor = ?, date = ?, time = ? WHERE id = ?";
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
+            stmt.setString(1, app.getCounName());
+            stmt.setDate(2, new java.sql.Date(app.getDate().getTime()));
+            stmt.setString(3, app.getTime());
+            stmt.setInt(4, app.getId());
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println("Error updating appointment: " + e.getMessage());
+        }
     }
 
 }

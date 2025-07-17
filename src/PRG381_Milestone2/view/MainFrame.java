@@ -16,9 +16,7 @@ import PRG381_Milestone2.model.Feedback;
 import PRG381_Milestone2.model.Counselor;
 import PRG381_Milestone2.model.Appointment;
 import PRG381_Milestone2.model.CounsDelete;
-import PRG381_Milestone2.model.Delete;
 import PRG381_Milestone2.model.FeedbackDelete;
-import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import java.text.*;
 
@@ -220,8 +218,7 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(5, 5, 5))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jLabel12)))
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(339, 339, 339)
@@ -727,17 +724,21 @@ public class MainFrame extends javax.swing.JFrame {
     private void loadAppointmentTable(){
         AppointmentController controller = new AppointmentController();
         List<Appointment> appointmentList = controller.getAllAppointments();
-        DefaultTableModel model = new DefaultTableModel(new String[]{"Counselor Name", "Date", "Time"}, 0);
+        DefaultTableModel model = new DefaultTableModel(new String[]{"ID", "Counselor Name", "Date", "Time"}, 0);
         for (Appointment ap : appointmentList) {
             model.addRow(new Object[]{
+                ap.getId(),
                 ap.getCounName(),
                 ap.getDate(),
                 ap.getTime()
             });
         }
-
+        appointmentsTbl.getColumnModel().getColumn(0).setMinWidth(0);
+        appointmentsTbl.getColumnModel().getColumn(0).setMaxWidth(0);
+        appointmentsTbl.getColumnModel().getColumn(0).setWidth(0);
         appointmentsTbl.setModel(model);
     }
+    
     private void loadTimeSlots(){
          String[] timeSlots = {
             "08:00", "08:30",
@@ -765,19 +766,21 @@ public class MainFrame extends javax.swing.JFrame {
             return null;
         }
 
-        String counselorName = appointmentsTbl.getValueAt(selectedRow, 0).toString();
-        String dateString = appointmentsTbl.getValueAt(selectedRow, 1).toString();
-        String time = appointmentsTbl.getValueAt(selectedRow, 2).toString();
+        int id = Integer.parseInt(appointmentsTbl.getValueAt(selectedRow, 0).toString()); 
+        String counselorName = appointmentsTbl.getValueAt(selectedRow, 1).toString();                  
+        String dateString = appointmentsTbl.getValueAt(selectedRow, 2).toString();                    
+        String time = appointmentsTbl.getValueAt(selectedRow, 3).toString();                           
 
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date date = sdf.parse(dateString);
-            return new Appointment(counselorName, date, time);
+            return new Appointment(id, counselorName, date, time);  
         } catch (ParseException e) {
             JOptionPane.showMessageDialog(this, "Error parsing date: " + e.getMessage());
             return null;
         }
     }
+
     
     private void loadCounselorNames(){
         CounselorController controller = new CounselorController();
@@ -929,7 +932,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> appointCounsName;
     private com.toedter.calendar.JDateChooser appointDate;
     private javax.swing.JComboBox<String> appointTime;
-    private javax.swing.JTable appointmentsTbl;
+    public javax.swing.JTable appointmentsTbl;
     private javax.swing.JComboBox<String> counsAvail;
     private javax.swing.JTextField counsName;
     private javax.swing.JTextField counsSpec;

@@ -12,16 +12,22 @@ import java.util.Date;
  * @author calvi
  */
 public class Appointment {
+    private int id;
     private String counselorName;
     private Date appDate;
     private String appTime;
     //appStatus should only be allowed to be changed via drop 
     
-    public Appointment(String counselorName, Date appDate, String appTime)
+    public Appointment(int id, String counselorName, Date appDate, String appTime)
     {
+        this.id = id;
         this.counselorName = counselorName;
         this.appDate = appDate;
         this.appTime = appTime;
+    }
+    
+    public int getId() {
+        return id;
     }
     
     public Date getDate() {
