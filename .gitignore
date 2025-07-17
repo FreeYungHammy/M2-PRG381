@@ -1,2 +1,11 @@
-/build/
-/nbproject/private/
+# Ignore database files
+M2PRG381/
+derby.log
+
+# Ignore NetBeans private config
+nbproject/private/
+
+# Ignore compiled classes
+build/
+dist/
+*.class

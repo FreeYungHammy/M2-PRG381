@@ -72,7 +72,7 @@ public class AppointmentController {
         //-->then create appointment object
         Appointment newApp = new Appointment(0, counselor, date, time);
 
-        //update list adn then maybe update database or only update database at end of operation
+        //update list and then maybe update database or only update database at end of operation
         insertAppointment(newApp);
     }
     
