@@ -8,12 +8,16 @@ package PRG381_Milestone2.view;
 import PRG381_Milestone2.controller.AppointmentController;
 import PRG381_Milestone2.controller.CounselorController;
 import PRG381_Milestone2.controller.FeedbackController;
+import PRG381_Milestone2.model.AppDelete;
 import java.awt.Color;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 import PRG381_Milestone2.model.Feedback;
 import PRG381_Milestone2.model.Counselor;
 import PRG381_Milestone2.model.Appointment;
+import PRG381_Milestone2.model.CounsDelete;
+import PRG381_Milestone2.model.Delete;
+import PRG381_Milestone2.model.FeedbackDelete;
 import javax.swing.JOptionPane;
 import java.text.*;
 
@@ -172,6 +176,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         deleteAppoint.setText("Delete Selected");
+        deleteAppoint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteAppointActionPerformed(evt);
+            }
+        });
 
         jScrollPane5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -333,6 +342,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         DeleteCouns.setText("Delete Selected");
+        DeleteCouns.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeleteCounsActionPerformed(evt);
+            }
+        });
 
         jDesktopPane2.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane2.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -525,6 +539,11 @@ public class MainFrame extends javax.swing.JFrame {
         });
 
         deleteComm.setText("Delete Selected");
+        deleteComm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteCommActionPerformed(evt);
+            }
+        });
 
         jDesktopPane3.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane3.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -833,6 +852,28 @@ public class MainFrame extends javax.swing.JFrame {
         fiveStar.setBackground(Color.yellow);
 
     }//GEN-LAST:event_fiveStarActionPerformed
+
+    private void deleteAppointActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteAppointActionPerformed
+        // TODO add your handling code here:
+        AppDelete app = new AppDelete();
+        
+        app.deleteMethod();//found in model AppDelete
+
+    }//GEN-LAST:event_deleteAppointActionPerformed
+
+    private void DeleteCounsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteCounsActionPerformed
+        // TODO add your handling code here:
+        CounsDelete couns = new CounsDelete();
+        
+        couns.deleteMethod();//found in model CounsDelete
+    }//GEN-LAST:event_DeleteCounsActionPerformed
+
+    private void deleteCommActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCommActionPerformed
+        // TODO add your handling code here:
+        FeedbackDelete feed = new FeedbackDelete();
+        
+        feed.deleteMethod();//found in model FeedbackDelete
+    }//GEN-LAST:event_deleteCommActionPerformed
 
     /**
      * @param args the command line arguments
