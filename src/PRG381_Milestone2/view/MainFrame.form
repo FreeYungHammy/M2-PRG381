@@ -262,6 +262,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete Selected"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteAppointActionPerformed"/>
+              </Events>
             </Component>
             <Container class="javax.swing.JScrollPane" name="jScrollPane5">
               <Properties>
@@ -555,6 +558,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete Selected"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DeleteCounsActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -883,6 +889,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete Selected"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteCommActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
