@@ -22,32 +22,6 @@ The application provides:
 * NetBeans 26
 * Git / GitHub for version control
 
-## Project Structure
-
-```
-src/
-│
-├── PRG381_Milestone2/
-│   └── Main.java               # Entry point of the application
-│
-├── PRG381_Milestone2.model/
-│   ├── Appointment.java
-│   ├── Counselor.java
-│   └── Feedback.java
-│
-├── PRG381_Milestone2.view/
-│   ├── MainFrame.java
-│   ├── AppointmentPanel.java
-│   ├── CounselorPanel.java
-│   └── FeedbackPanel.java
-│
-└── PRG381_Milestone2.controller/
-    ├── AppointmentController.java
-    ├── CounselorController.java
-    ├── FeedbackController.java
-    └── DBConnection.java
-```
-
 ## Features
 
 * Appointment booking and management
